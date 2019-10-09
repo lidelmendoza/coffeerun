@@ -30,6 +30,23 @@
     });
   };
 
+  FormHandler.prototype.addInputHandler = function (fn) {
+    console.log('Setting input handler for form');
+    this.$formElement.on('input', '[name="emailAddress"]', function (event) {
+      //code will go here
+      var emailAddress = event.target.value;
+      var message = '';
+      if(fn(emailAddress)){
+        event.target.setCustomValidity('');
+      } else {
+        message = emailAddress + ' is not an authorized email adress!'
+        event.target.setCustomValidity(message);
+      }
+    });
+  };
+
+
+
   // FormHandler.prototype.addPayment = function (fn) {
   //   console.log('payment form is being createed');
   //   this.$formElement.
